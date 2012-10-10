@@ -224,10 +224,12 @@ class JIRAIssueForm(forms.Form):
                 else:
                     # We don't want to pass blank data back to the API, so kill
                     # None values
-                    very_clean.pop(field, None)
+                    del very_clean[field]
+                    # very_clean.pop(field, None)
 
-        very_clean["issuetype"] = {"id": very_clean["issuetype"]}
-        very_clean.pop("project_key", None)
+        del very_clean["project_key"]
+        # very_clean["issuetype"] = {"id": very_clean["issuetype"]}
+        # very_clean.pop("project_key", None)
 
         return very_clean
 
